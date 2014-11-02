@@ -1,0 +1,22 @@
+---
+driver:
+  # name: vagrant
+  name: docker
+  socket: <%= ENV['DOCKER_HOST'] %>
+  use_sudo: false
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: ubuntu-12.04
+  # - name: centos-6.4
+
+suites:
+  - name: default
+    run_list:
+      - recipe[zsh::default]
+    attributes:
+      zsh:
+        antigen:
+          install: true

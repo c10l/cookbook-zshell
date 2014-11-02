@@ -1,0 +1,7 @@
+name             'zsh'
+maintainer       'Cassiano Leal'
+maintainer_email 'cassianoleal@gmail.com'
+license          'all_rights'
+description      'Installs/Configures zsh'
+long_description 'Installs/Configures zsh'
+version          '0.1.0'
