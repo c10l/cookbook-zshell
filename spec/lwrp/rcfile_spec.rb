@@ -18,7 +18,7 @@ describe 'test::rcfile' do
 
   context 'action_create' do
 
-    it { expect(chef).to create_file('/home/test_user/.zshrc.d/10-test_content') }
+    it { expect(chef).to create_file('/home/test_user/.zshrc.d/10-test_content.zsh') }
 
     context 'init' do
 
@@ -60,7 +60,7 @@ describe 'test::rcfile' do
 
   context 'action_delete' do
 
-    it { expect(chef).to delete_file('/home/test_user/.zshrc.d/20-test_delete') }
+    it { expect(chef).to delete_file('/home/test_user/.zshrc.d/20-test_delete.zsh') }
 
   end
 

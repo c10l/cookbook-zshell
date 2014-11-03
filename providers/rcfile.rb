@@ -3,7 +3,7 @@ require 'etc'
 action :create do
   init
 
-  file ::File.join(zshrc_d, "#{new_resource.order}-#{new_resource.filename}") do
+  file ::File.join(zshrc_d, "#{new_resource.order}-#{new_resource.filename}.zsh") do
     content new_resource.content
     owner new_resource.user
     group Etc.getpwnam(new_resource.user).gid
@@ -15,7 +15,7 @@ action :create do
 end
 
 action :delete do
-  file ::File.join(zshrc_d, "#{new_resource.order}-#{new_resource.filename}") do
+  file ::File.join(zshrc_d, "#{new_resource.order}-#{new_resource.filename}.zsh") do
     action :delete
   end
 
