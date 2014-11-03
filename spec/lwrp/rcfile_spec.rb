@@ -16,7 +16,26 @@ describe 'test::rcfile' do
 
   context 'action_create' do
 
-    it { expect(chef).to create_file('/home/test_user/.zshrc.d/10-test_content.zsh') }
+    context 'content' do
+
+      zshfile = '/home/test_user/.zshrc.d/10-test_content1.zsh'
+
+      it { expect(chef).to create_template(zshfile) }
+      it { expect(chef).to create_template(zshfile).with_cookbook('zsh') }
+      it { expect(chef).to render_file(zshfile).with_content('test_content') }
+
+    end
+
+    context 'template' do
+
+      zshfile = '/home/test_user/.zshrc.d/20-test_content2.zsh'
+
+      it { expect(chef).to create_template(zshfile) }
+      it { expect(chef).to create_template(zshfile).with_source('rcfile.erb') }
+      it { expect(chef).to create_template(zshfile).with_cookbook('test') }
+      it { expect(chef).to render_file(zshfile).with_content('variable: dynamic text') }
+
+    end
 
     context 'init' do
 
