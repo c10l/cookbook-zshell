@@ -11,9 +11,7 @@ describe 'test::rcfile' do
     allow(Dir).to receive(:home).and_return('/home/test_user')
   end
 
-  let(:runner) do
-    ChefSpec::Runner.new( :step_into => [ 'zsh_rcfile' ] )
-  end
+  let(:runner) { ChefSpec::Runner.new( :step_into => [ 'zsh_rcfile' ] ) }
   let(:chef) { runner.converge(described_recipe) }
 
   context 'action_create' do
