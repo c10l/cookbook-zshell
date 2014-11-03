@@ -1,0 +1,19 @@
+# Red dots to be displayed while waiting for completion
+COMPLETION_WAITING_DOTS=<%= @resource.completion_waiting_dots %>
+
+### For loading antigen libs (https://github.com/zsh-users/antigen)
+source $HOME/.antigen/antigen.zsh
+
+<%- [@resource.use].flatten.each do |u| -%>
+antigen use <%= u %>
+<%- end -%>
+unsetopt correct_all
+
+<%- if @resource.theme -%>
+antigen theme <%= @resource.theme %>
+<%- end -%>
+
+<%- [@resource.bundle].flatten.each do |b| -%>
+antigen bundle <%= b %>
+<%- end -%>
+antigen apply

@@ -6,6 +6,6 @@ zsh_antigen 'test_user' do
   action :enable
 end
 
-zsh_antigen 'test_user' do
+zsh_antigen 'test_user2' do
   action :disable
 end
