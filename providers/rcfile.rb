@@ -1,5 +1,7 @@
 require 'etc'
 
+use_inline_resources
+
 action :create do
   init
 
@@ -23,16 +25,12 @@ action :create do
     mode '0644'
     action :create
   end
-
-  new_resource.updated_by_last_action(true)
 end
 
 action :delete do
   file ::File.join(zshrc_d, "#{new_resource.order}-#{new_resource.filename}.zsh") do
     action :delete
   end
-
-  new_resource.updated_by_last_action(true)
 end
 
 def init
