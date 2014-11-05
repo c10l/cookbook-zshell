@@ -16,6 +16,9 @@ suites:
   - name: default
     run_list:
       - recipe[zsh::default]
+      - recipe[test::users]
+      - recipe[test::rcfile]
+      - recipe[test::antigen]
     attributes:
       zsh:
         antigen:

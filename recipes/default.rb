@@ -4,8 +4,6 @@
 #
 # Copyright (c) 2014 Cassiano Leal, All Rights Reserved.
 
-include_recipe 'zsh::antigen' if node['zsh']['antigen']['install']
-
 package "zsh" do
   action :install
 end
