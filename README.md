@@ -31,7 +31,9 @@ include 'zshell::default'
 ## <a id="zshell_rcfile"></a>zshell_rcfile
 
 This LWRP supports two actions:
+
 * `:create` (default)
+
 * `:delete`
 
 ### Defining the file's content inline with `content`
@@ -67,7 +69,9 @@ end
 ## <a id="zshell_antigen"></a>zshell_antigen
 
 This LWRP supports two actions:
+
 * `:enable` (default)
+
 * `:disable`
 
 ```ruby
