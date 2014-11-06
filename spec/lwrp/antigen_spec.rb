@@ -11,7 +11,7 @@ describe 'test::antigen' do
     allow(Dir).to receive(:home).and_return('/home/test_user')
   end
 
-  let(:runner) { ChefSpec::Runner.new( :step_into => [ 'zsh_antigen' ] ) }
+  let(:runner) { ChefSpec::Runner.new( :step_into => [ 'zshell_antigen' ] ) }
   let(:chef) { runner.converge(described_recipe) }
 
   context 'action_enable' do
@@ -23,13 +23,13 @@ describe 'test::antigen' do
 
     end
 
-    it { expect(chef).to create_zsh_rcfile('antigen') }
+    it { expect(chef).to create_zshell_rcfile('antigen') }
 
   end
 
   context 'action_disable' do
 
-    it { expect(chef).to delete_zsh_rcfile('antigen').with_user('test_user2') }
+    it { expect(chef).to delete_zshell_rcfile('antigen').with_user('test_user2') }
 
   end
 

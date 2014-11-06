@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: zsh
+# Cookbook Name:: zshell
 # Recipe:: default
 #
 # Copyright (c) 2014 Cassiano Leal, All Rights Reserved.

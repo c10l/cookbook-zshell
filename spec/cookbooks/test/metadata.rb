@@ -1,3 +1,3 @@
 name 'test'
 
-depends 'zsh'
+depends 'zshell'

@@ -3,7 +3,7 @@ require 'serverspec'
 # Required by serverspec
 set :backend, :exec
 
-describe "zsh::antigen" do
+describe "zshell::antigen" do
 
   context 'action :enable' do
 

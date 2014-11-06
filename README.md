@@ -1,10 +1,10 @@
-[![Build Status](https://travis-ci.org/cassianoleal/cookbook-zsh.png)](https://travis-ci.org/cassianoleal/cookbook-zsh)
+[![Build Status](https://travis-ci.org/cassianoleal/cookbook-zshell.png)](https://travis-ci.org/cassianoleal/cookbook-zshell)
 
-# zsh cookbook
+# zshell cookbook
 
-This is a Chef cookbook to install and configure `zsh`.
+This is a Chef cookbook to install and configure `zshell`.
 
-There are 2 LWRPs present, one for arbitrary commands to be added to the shell initialisation ([`zsh_rcfile`](#zsh_rcfile)) and the other to install and configure [antigen](https://github.com/zsh-users/antigen) ([`zsh_antigen`](#zsh_antigen)).
+There are 2 LWRPs present, one for arbitrary commands to be added to the shell initialisation ([`zshell_rcfile`](#zshell_rcfile)) and the other to install and configure [antigen](https://github.com/zshell-users/antigen) ([`zshell_antigen`](#zshell_antigen)).
 
 # Usage
 
@@ -13,7 +13,7 @@ In order to install `zsh` you just need to include the default recipe in your no
 ### In a recipe:
 
 ```ruby
-include 'zsh::default'
+include 'zshell::default'
 ```
 
 ### In a role:
@@ -21,14 +21,14 @@ include 'zsh::default'
 ```json
 {
   "run_list": [
-    "recipe[zsh::default]"
+    "recipe[zshell::default]"
   ]
 }
 ```
 
 # LWRP
 
-## <a id="zsh_rcfile"></a>zsh_rcfile
+## <a id="zshell_rcfile"></a>zshell_rcfile
 
 This LWRP supports two actions:
 * `:create` (default)
@@ -39,7 +39,7 @@ This LWRP supports two actions:
 This snippet creates a file called `~/.zshrc.d/10-java_home.zsh` for user `username`.
 
 ```ruby
-zsh_rcfile 'java_home' do
+zshell_rcfile 'java_home' do
   user 'username'
   content 'JAVA_HOME=/usr/java'
   order '10'
@@ -52,7 +52,7 @@ end
 This creates a file called `~/.zshrc.d/20-complex_setup.zsh`.
 
 ```ruby
-zsh_rcfile 'complex_setup' do
+zshell_rcfile 'complex_setup' do
   user 'username'
   source 'rcfile.erb'
   cookbook 'my_wrapper_cookbook'
@@ -64,14 +64,14 @@ zsh_rcfile 'complex_setup' do
 end
 ```
 
-## <a id="zsh_antigen"></a>zsh_antigen
+## <a id="zshell_antigen"></a>zshell_antigen
 
 This LWRP supports two actions:
 * `:enable` (default)
 * `:disable`
 
 ```ruby
-zsh_antigen 'username' do
+zshell_antigen 'username' do
   completion_waiting_dots true
   use [ 'oh-my-zsh' ]
   theme 'agnoster'

@@ -15,11 +15,11 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[zsh::default]
+      - recipe[zshell::default]
       - recipe[test::users]
       - recipe[test::rcfile]
       - recipe[test::antigen]
     attributes:
-      zsh:
+      zshell:
         antigen:
           install: true

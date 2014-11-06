@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'zsh::default' do
+describe 'zshell::default' do
 
   let(:runner) { ChefSpec::Runner.new }
   let(:chef) { runner.converge(described_recipe) }

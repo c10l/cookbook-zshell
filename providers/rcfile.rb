@@ -19,7 +19,7 @@ action :create do
   template ::File.join(zshrc_d, "#{new_resource.order}-#{new_resource.filename}.zsh") do
     variables template_variables
     source new_resource.source || 'rcfile.erb'
-    cookbook new_resource.cookbook || 'zsh'
+    cookbook new_resource.cookbook || 'zshell'
     owner new_resource.user
     group Etc.getpwnam(new_resource.user).gid
     mode '0644'
@@ -52,7 +52,7 @@ def init
   end
 
   cookbook_file zshrc do
-    cookbook "zsh"
+    cookbook "zshell"
     source "zshrc"
     owner new_resource.user
     group Etc.getpwnam(new_resource.user).gid

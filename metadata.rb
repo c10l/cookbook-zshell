@@ -1,4 +1,4 @@
-name             'zsh'
+name             'zshell'
 maintainer       'Cassiano Leal'
 maintainer_email 'cassianoleal@gmail.com'
 license          'all_rights'

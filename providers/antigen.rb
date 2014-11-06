@@ -3,10 +3,10 @@ use_inline_resources
 action :enable do
   init
 
-  zsh_rcfile 'antigen' do
+  zshell_rcfile 'antigen' do
     user new_resource.user
     source 'rcfile_antigen.erb'
-    cookbook 'zsh'
+    cookbook 'zshell'
     variables( { :resource => new_resource } )
     order '00'
   end
@@ -15,7 +15,7 @@ end
 
 action :disable do
 
-  zsh_rcfile 'antigen' do
+  zshell_rcfile 'antigen' do
     user new_resource.user
     order '00'
     action :delete

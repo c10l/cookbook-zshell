@@ -1,11 +1,11 @@
-zsh_rcfile 'test_content1' do
+zshell_rcfile 'test_content1' do
   user 'test_user'
   content 'test_content'
   order '10'
   action :create
 end
 
-zsh_rcfile 'test_content2' do
+zshell_rcfile 'test_content2' do
   user 'test_user'
   source 'rcfile.erb'
   cookbook 'test'
@@ -16,7 +16,7 @@ zsh_rcfile 'test_content2' do
   action :create
 end
 
-zsh_rcfile 'test_delete' do
+zshell_rcfile 'test_delete' do
   user 'test_user'
   order '20'
   action :delete

@@ -11,29 +11,29 @@ describe 'test::rcfile' do
     allow(Dir).to receive(:home).and_return('/home/test_user')
   end
 
-  let(:runner) { ChefSpec::Runner.new( :step_into => [ 'zsh_rcfile' ] ) }
+  let(:runner) { ChefSpec::Runner.new( :step_into => [ 'zshell_rcfile' ] ) }
   let(:chef) { runner.converge(described_recipe) }
 
   context 'action_create' do
 
     context 'content' do
 
-      zshfile = '/home/test_user/.zshrc.d/10-test_content1.zsh'
+      zshellfile = '/home/test_user/.zshrc.d/10-test_content1.zsh'
 
-      it { expect(chef).to create_template(zshfile) }
-      it { expect(chef).to create_template(zshfile).with_cookbook('zsh') }
-      it { expect(chef).to render_file(zshfile).with_content('test_content') }
+      it { expect(chef).to create_template(zshellfile) }
+      it { expect(chef).to create_template(zshellfile).with_cookbook('zshell') }
+      it { expect(chef).to render_file(zshellfile).with_content('test_content') }
 
     end
 
     context 'template' do
 
-      zshfile = '/home/test_user/.zshrc.d/20-test_content2.zsh'
+      zshellfile = '/home/test_user/.zshrc.d/20-test_content2.zsh'
 
-      it { expect(chef).to create_template(zshfile) }
-      it { expect(chef).to create_template(zshfile).with_source('rcfile.erb') }
-      it { expect(chef).to create_template(zshfile).with_cookbook('test') }
-      it { expect(chef).to render_file(zshfile).with_content('variable: dynamic text') }
+      it { expect(chef).to create_template(zshellfile) }
+      it { expect(chef).to create_template(zshellfile).with_source('rcfile.erb') }
+      it { expect(chef).to create_template(zshellfile).with_cookbook('test') }
+      it { expect(chef).to render_file(zshellfile).with_content('variable: dynamic text') }
 
     end
 
