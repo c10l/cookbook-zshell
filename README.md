@@ -33,7 +33,6 @@ include 'zshell::default'
 This LWRP supports two actions:
 
 * `:create` (default)
-
 * `:delete`
 
 ### Defining the file's content inline with `content`
@@ -71,7 +70,6 @@ end
 This LWRP supports two actions:
 
 * `:enable` (default)
-
 * `:disable`
 
 ```ruby
