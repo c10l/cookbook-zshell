@@ -82,6 +82,22 @@ zshell_antigen 'username' do
 end
 ```
 
+### Alternate provider: Zgen
+
+Version 0.2.0 adds an alternative provider for this resource that uses [zgen](https://github.com/tarjoilija/zgen). To use it, set the `provider` attribute to `Chef::Provider::ZshellZgen`. All regular antigen options are supported, and a new `zgen_load` parameter was added to support the `zgen load` function:
+
+```ruby
+zshell_antigen 'username' do
+  provider Chef::Provider::ZshellZgen
+  completion_waiting_dots true
+  use [ 'oh-my-zsh' ]
+  theme 'agnoster'
+  bundle [ 'git', 'bundler' ]
+  zgen_load [ 'zsh-users/zsh-syntax-highlighting', 'supercrabtree/k', 'zsh-users/zsh-completions src' ]
+  action :enable
+end
+```
+
 # Author
 
-Cassiano Leal ([email](<mailto:cassianoleal@gmail.com>) | [twitter](http://twitter.com/cassianoleal) | [github](https://github.com/cassianoleal))
+Cassiano Leal ( [email](<mailto:cassianoleal@gmail.com>) | [twitter](http://twitter.com/cassianoleal) | [github](https://github.com/cassianoleal) )

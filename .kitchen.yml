@@ -1,6 +1,5 @@
 ---
 driver:
-  # name: vagrant
   name: docker
   socket: <%= ENV['DOCKER_HOST'] %>
   use_sudo: false
@@ -19,6 +18,7 @@ suites:
       - recipe[test::users]
       - recipe[test::rcfile]
       - recipe[test::antigen]
+      - recipe[test::zgen]
     attributes:
       zshell:
         antigen:

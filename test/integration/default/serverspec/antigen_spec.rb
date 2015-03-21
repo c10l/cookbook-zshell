@@ -25,4 +25,17 @@ describe "zshell::antigen" do
 
   end
 
+  context 'zgen provider' do
+
+    context file('/home/test_zgen_user/.zgen/repo/zgen.zsh') do
+      it { expect(subject).to be_file }
+    end
+
+    context file('/home/test_zgen_user/.zshrc.d/00-antigen.zsh') do
+      it { expect(subject).to be_file }
+      it { expect(subject.content).to match( /zgen/ ) }
+    end
+
+  end
+
 end
