@@ -47,7 +47,7 @@ def init
     else
       action :touch
     end
-    mode '0755'
+    mode '0644'
     not_if { ::File.exists?(::File.join(zshrc_d, "00-old_config.zsh")) }
   end
 
