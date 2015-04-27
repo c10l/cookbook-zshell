@@ -10,21 +10,17 @@ action :enable do
     variables( { :resource => new_resource } )
     order '00'
   end
-
 end
 
 action :disable do
-
   zshell_rcfile 'antigen' do
     user new_resource.user
     order '00'
     action :delete
   end
-
 end
 
 def init
-
   directory antigen_home do
     owner new_resource.user
     group Etc.getpwnam(new_resource.user).gid
@@ -39,7 +35,6 @@ def init
     mode '0644'
     action :create
   end
-
 end
 
 def antigen_home

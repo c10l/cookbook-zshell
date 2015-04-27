@@ -3,7 +3,6 @@ require 'spec_helper'
 TestUser = Struct.new(:gid)
 
 describe 'test::rcfile' do
-
   before do
     test_user = TestUser.new
     test_user.gid = 'test_group'
@@ -15,30 +14,24 @@ describe 'test::rcfile' do
   let(:chef) { runner.converge(described_recipe) }
 
   context 'action_create' do
-
     context 'content' do
-
       zshellfile = '/home/test_user/.zshrc.d/10-test_content1.zsh'
 
       it { expect(chef).to create_template(zshellfile) }
       it { expect(chef).to create_template(zshellfile).with_cookbook('zshell') }
       it { expect(chef).to render_file(zshellfile).with_content('test_content') }
-
     end
 
     context 'template' do
-
       zshellfile = '/home/test_user/.zshrc.d/20-test_content2.zsh'
 
       it { expect(chef).to create_template(zshellfile) }
       it { expect(chef).to create_template(zshellfile).with_source('rcfile.erb') }
       it { expect(chef).to create_template(zshellfile).with_cookbook('test') }
       it { expect(chef).to render_file(zshellfile).with_content('variable: dynamic text') }
-
     end
 
     context 'init' do
-
       it { expect(chef).to create_directory( '/home/test_user/.zshrc.d' ) }
       it { expect(chef).to create_cookbook_file( '/home/test_user/.zshrc' ) }
 
@@ -72,13 +65,9 @@ describe 'test::rcfile' do
         it { expect(chef).not_to touch_file( '/home/test_user/.zshrc.d/00-old_config.zsh' ) }
       end
     end
-
   end
 
   context 'action_delete' do
-
     it { expect(chef).to delete_file('/home/test_user/.zshrc.d/20-test_delete.zsh') }
-
   end
-
 end

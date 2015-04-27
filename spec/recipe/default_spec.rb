@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'zshell::default' do
-
   let(:runner) { ChefSpec::SoloRunner.new }
   let(:chef) { runner.converge(described_recipe) }
 
@@ -16,5 +15,4 @@ describe 'zshell::default' do
     let(:runner) { ChefSpec::SoloRunner.new( platform: 'redhat', version: '6.5' ) }
     it { expect(chef).to install_package('zsh-html') }
   end
-
 end

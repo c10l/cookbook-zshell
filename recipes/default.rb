@@ -9,12 +9,6 @@ package "zsh" do
 end
 
 case node['platform_family']
-when "debian"
-  package "zsh-doc" do
-    action :install
-  end
-when "rhel", "fedora"
-  package "zsh-html" do
-    action :install
-  end
+when "debian" then package "zsh-doc"
+when "rhel", "fedora" then package "zsh-html"
 end

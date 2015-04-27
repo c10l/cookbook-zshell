@@ -3,7 +3,8 @@ COMPLETION_WAITING_DOTS=<%= @resource.completion_waiting_dots %>
 
 source $HOME/.zgen/repo/zgen.zsh
 
-if ! $(zgen saved && shasum -c $HOME/.zshrc.sha > /dev/null); then
+local scriptname=$(basename $0)
+if ! $(zgen saved && shasum -c ~/.zshrc.d/."${scriptname}".sha > /dev/null); then
   <%- [@resource.use].flatten.each do |u| -%>
   zgen <%= u %>
   <%- end -%>
@@ -13,7 +14,7 @@ if ! $(zgen saved && shasum -c $HOME/.zshrc.sha > /dev/null); then
   <%- end -%>
 
   <%- [@resource.bundle].flatten.each do |b| -%>
-  zgen oh-my-zshell plugins/<%= b %>
+  zgen oh-my-zsh plugins/<%= b %>
   <%- end -%>
 
   <%- [@resource.zgen_load].flatten.each do |l| -%>
@@ -21,5 +22,5 @@ if ! $(zgen saved && shasum -c $HOME/.zshrc.sha > /dev/null); then
   <%- end -%>
 
   zgen save
-  shasum $HOME/.zshrc > $HOME/.zshrc.sha
+  shasum ~/.zshrc.d/"${scriptname}" > ~/.zshrc.d/."${scriptname}".sha
 fi
