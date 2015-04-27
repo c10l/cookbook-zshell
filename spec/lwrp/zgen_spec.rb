@@ -10,7 +10,7 @@ describe 'test::zgen' do
     allow(Dir).to receive(:home).and_return('/home/test_zgen_user')
   end
 
-  let(:runner) { ChefSpec::Runner.new( :step_into => [ 'zshell_antigen' ] ) }
+  let(:runner) { ChefSpec::SoloRunner.new( :step_into => [ 'zshell_antigen' ] ) }
   let(:chef) { runner.converge(described_recipe) }
 
   context 'action_enable' do
