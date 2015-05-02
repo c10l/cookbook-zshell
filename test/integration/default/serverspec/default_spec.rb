@@ -4,9 +4,7 @@ require 'serverspec'
 set :backend, :exec
 
 describe "zshell::default" do
-
   context package('zsh') do
-    it { expect(subject).to be_installed }
+    it { should be_installed }
   end
-
 end

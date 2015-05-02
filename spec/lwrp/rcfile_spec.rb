@@ -3,21 +3,25 @@ require 'spec_helper'
 TestUser = Struct.new(:gid)
 
 describe 'test::rcfile' do
+  let(:runner) { ChefSpec::SoloRunner.new( :step_into => [ 'zshell_rcfile' ] ) }
+  let(:chef) { runner.converge(described_recipe) }
+  let(:test_user) do
+    user = TestUser.new
+    user.gid = 'test_group'
+    user
+  end
+
   before do
-    test_user = TestUser.new
-    test_user.gid = 'test_group'
     allow(Etc).to receive(:getpwnam).and_return(test_user)
     allow(Dir).to receive(:home).and_return('/home/test_user')
   end
-
-  let(:runner) { ChefSpec::SoloRunner.new( :step_into => [ 'zshell_rcfile' ] ) }
-  let(:chef) { runner.converge(described_recipe) }
 
   context 'action_create' do
     context 'content' do
       zshellfile = '/home/test_user/.zshrc.d/10-test_content1.zsh'
 
       it { expect(chef).to create_template(zshellfile) }
+      it { expect(chef).to create_template(zshellfile).with_owner('test_user') }
       it { expect(chef).to create_template(zshellfile).with_cookbook('zshell') }
       it { expect(chef).to render_file(zshellfile).with_content('test_content') }
     end
@@ -26,6 +30,7 @@ describe 'test::rcfile' do
       zshellfile = '/home/test_user/.zshrc.d/20-test_content2.zsh'
 
       it { expect(chef).to create_template(zshellfile) }
+      it { expect(chef).to create_template(zshellfile).with_owner('test_user') }
       it { expect(chef).to create_template(zshellfile).with_source('rcfile.erb') }
       it { expect(chef).to create_template(zshellfile).with_cookbook('test') }
       it { expect(chef).to render_file(zshellfile).with_content('variable: dynamic text') }
@@ -44,6 +49,7 @@ describe 'test::rcfile' do
         end
 
         it { expect(chef).to create_file( '/home/test_user/.zshrc.d/00-old_config.zsh' ) }
+        it { expect(chef).to create_file( '/home/test_user/.zshrc.d/00-old_config.zsh' ).with_owner('test_user') }
       end
 
       context 'no_old_config' do
@@ -53,6 +59,7 @@ describe 'test::rcfile' do
         end
 
         it { expect(chef).to touch_file( '/home/test_user/.zshrc.d/00-old_config.zsh' ) }
+        it { expect(chef).to touch_file( '/home/test_user/.zshrc.d/00-old_config.zsh' ).with_owner('test_user') }
       end
 
       context 'already_converged' do

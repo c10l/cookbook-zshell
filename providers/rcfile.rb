@@ -47,6 +47,8 @@ def init
     else
       action :touch
     end
+    owner new_resource.user
+    group Etc.getpwnam(new_resource.user).gid
     mode '0644'
     not_if { ::File.exists?(::File.join(zshrc_d, "00-old_config.zsh")) }
   end

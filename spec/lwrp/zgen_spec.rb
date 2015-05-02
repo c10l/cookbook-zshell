@@ -16,10 +16,13 @@ describe 'test::zgen' do
   context 'action_enable' do
     context 'init' do
       it { expect(chef).to create_directory('/home/test_zgen_user/.zgen') }
+      it { expect(chef).to create_directory('/home/test_zgen_user/.zgen').with_owner('test_zgen_user') }
       it { expect(chef).to sync_git('/home/test_zgen_user/.zgen/repo').with_repository('https://github.com/tarjoilija/zgen.git') }
+      it { expect(chef).to sync_git('/home/test_zgen_user/.zgen/repo').with_user('test_zgen_user') }
     end
 
     it { expect(chef).to install_package('git') }
     it { expect(chef).to create_zshell_rcfile('antigen') }
+    it { expect(chef).to create_zshell_rcfile('antigen').with_user('test_zgen_user') }
   end
 end
