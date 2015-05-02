@@ -16,7 +16,7 @@ describe 'test::rcfile' do
     allow(Dir).to receive(:home).and_return('/home/test_user')
   end
 
-  context 'action_create' do
+  context 'action :create' do
     context 'content' do
       zshellfile = '/home/test_user/.zshrc.d/10-test_content1.zsh'
 
@@ -36,45 +36,46 @@ describe 'test::rcfile' do
       it { expect(chef).to render_file(zshellfile).with_content('variable: dynamic text') }
     end
 
-    context 'init' do
-      it { expect(chef).to create_directory( '/home/test_user/.zshrc.d' ) }
-      it { expect(chef).to create_cookbook_file( '/home/test_user/.zshrc' ) }
+    context 'init()' do
+      it { expect(chef).to create_directory('/home/test_user/.zshrc.d') }
+      it { expect(chef).to create_cookbook_file('/home/test_user/.zshrc') }
 
-      context 'has_old_config' do
+      context 'when old config exists' do
         before do
           allow(File).to receive(:exists?).and_call_original
           allow(File).to receive(:exists?).with('/home/test_user/.zshrc').and_return(true)
           allow(IO).to receive(:read).and_call_original
-          allow(IO).to receive(:read).with('/home/test_user/.zshrc').and_return('')
+          allow(IO).to receive(:read).with('/home/test_user/.zshrc').and_return('test_content')
         end
 
-        it { expect(chef).to create_file( '/home/test_user/.zshrc.d/00-old_config.zsh' ) }
-        it { expect(chef).to create_file( '/home/test_user/.zshrc.d/00-old_config.zsh' ).with_owner('test_user') }
+        it { expect(chef).to create_file('/home/test_user/.zshrc.zshell_cookbook_save') }
+        it { expect(chef).to create_file('/home/test_user/.zshrc.zshell_cookbook_save').with_owner('test_user') }
+        it { expect(chef).to create_file('/home/test_user/.zshrc.zshell_cookbook_save').with_content('test_content') }
       end
 
-      context 'no_old_config' do
+      context 'when there is no old config' do
         before do
           allow(File).to receive(:exists?).and_call_original
           allow(File).to receive(:exists?).with('/home/test_user/.zshrc').and_return(false)
         end
 
-        it { expect(chef).to touch_file( '/home/test_user/.zshrc.d/00-old_config.zsh' ) }
-        it { expect(chef).to touch_file( '/home/test_user/.zshrc.d/00-old_config.zsh' ).with_owner('test_user') }
+        it { expect(chef).to create_file('/home/test_user/.zshrc.zshell_cookbook_save') }
+        it { expect(chef).to create_file('/home/test_user/.zshrc.zshell_cookbook_save').with_owner('test_user') }
+        it { expect(chef).to render_file('/home/test_user/.zshrc.zshell_cookbook_save').with_content('') }
       end
 
-      context 'already_converged' do
+      context 'after first run' do
         before do
           allow(File).to receive(:exists?).and_call_original
           allow(File).to receive(:exists?).with('/home/test_user/.zshrc.d/00-old_config.zsh').and_return(true)
         end
 
-        it { expect(chef).not_to create_file( '/home/test_user/.zshrc.d/00-old_config.zsh' ) }
-        it { expect(chef).not_to touch_file( '/home/test_user/.zshrc.d/00-old_config.zsh' ) }
+        it { expect(chef).not_to create_file('/home/test_user/.zshrc.d/00-old_config.zsh') }
       end
     end
   end
 
-  context 'action_delete' do
+  context 'action :delete' do
     it { expect(chef).to delete_file('/home/test_user/.zshrc.d/20-test_delete.zsh') }
   end
 end

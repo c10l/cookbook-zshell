@@ -40,17 +40,18 @@ def init
     mode '0755'
   end
 
-  file ::File.join(zshrc_d, "00-old_config.zsh") do
+  file "#{zshrc}.zshell_cookbook_save" do
     if ::File.exists?(zshrc)
       content ::IO.read(zshrc)
       action :create
     else
-      action :touch
+      content ''
+      action :create
     end
     owner new_resource.user
     group Etc.getpwnam(new_resource.user).gid
     mode '0644'
-    not_if { ::File.exists?(::File.join(zshrc_d, "00-old_config.zsh")) }
+    not_if { ::File.exists?(name) }
   end
 
   cookbook_file zshrc do
