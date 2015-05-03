@@ -28,7 +28,7 @@ include 'zshell::default'
 
 # LWRP
 
-## <a id="zshell_rcfile"></a>zshell_rcfile
+## zshell_rcfile
 
 This LWRP supports two actions:
 
@@ -65,7 +65,7 @@ zshell_rcfile 'complex_setup' do
 end
 ```
 
-## <a id="zshell_antigen"></a>zshell_antigen
+## zshell_antigen
 
 This LWRP supports two actions:
 
