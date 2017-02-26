@@ -29,7 +29,7 @@ def init
   end
 
   remote_file "#{antigen_home}/antigen.zsh" do
-    source 'https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh'
+    source 'https://raw.githubusercontent.com/zsh-users/antigen/develop/bin/antigen.zsh'
     owner new_resource.user
     group Etc.getpwnam(new_resource.user).gid
     mode '0644'
