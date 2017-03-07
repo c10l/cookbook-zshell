@@ -1,5 +1,11 @@
 # changelog
 
+### Version 0.4.0
+
+Make the antigen download URL parameterised and update the default.
+
+Parameterise the git revision of the zgen repo.
+
 ### Version 0.3.0
 
 This version alters the behaviour of the plugin the first time it's run.
