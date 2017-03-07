@@ -14,4 +14,7 @@ attribute :use,                     :kind_of => [ Array, String ],
 attribute :theme,                   :kind_of => String
 attribute :bundle,                  :kind_of => [ Array, String ]
 
+attribute :antigen_url,             :kind_of => String,
+                                    :default => 'https://cdn.rawgit.com/zsh-users/antigen/latest/bin/antigen.zsh'
+
 attribute :zgen_load,               :kind_of => [ Array, String ]

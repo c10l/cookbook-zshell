@@ -74,6 +74,7 @@ This LWRP supports two actions:
 
 ```ruby
 zshell_antigen 'username' do
+  antigen_url 'https://cdn.rawgit.com/zsh-users/antigen/latest/bin/antigen.zsh'
   completion_waiting_dots true
   use [ 'oh-my-zsh' ]
   theme 'agnoster'
