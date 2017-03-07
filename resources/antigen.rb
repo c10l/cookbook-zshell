@@ -18,3 +18,6 @@ attribute :antigen_url,             :kind_of => String,
                                     :default => 'https://cdn.rawgit.com/zsh-users/antigen/latest/bin/antigen.zsh'
 
 attribute :zgen_load,               :kind_of => [ Array, String ]
+
+attribute :zgen_revision,           :kind_of => String,
+                                    :default => 'master'

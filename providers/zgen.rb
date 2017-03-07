@@ -31,7 +31,7 @@ def init
   package "git"
   git "#{zgen_home}/repo" do
     repository 'https://github.com/tarjoilija/zgen.git'
-    revision 'master'
+    revision new_resource.zgen_revision
     user new_resource.user
     group Etc.getpwnam(new_resource.user).gid
     action :sync

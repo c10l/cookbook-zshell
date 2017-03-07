@@ -94,6 +94,7 @@ zshell_antigen 'username' do
   use [ 'oh-my-zsh' ]
   theme 'agnoster'
   bundle [ 'git', 'bundler' ]
+  zgen_revision 'master'
   zgen_load [ 'zsh-users/zsh-syntax-highlighting', 'supercrabtree/k', 'zsh-users/zsh-completions src' ]
   action :enable
 end
