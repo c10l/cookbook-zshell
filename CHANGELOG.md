@@ -1,5 +1,9 @@
 # changelog
 
+### Version 0.4.1
+
+Add `source_url` and `issues_url` to metadata
+
 ### Version 0.4.0
 
 Make the antigen download URL parameterised and update the default.

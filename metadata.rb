@@ -4,7 +4,9 @@ maintainer_email 'cassianoleal@gmail.com'
 license          'Apache v2.0'
 description      'Installs/Configures zsh'
 long_description 'Installs/Configures zsh'
-version          '0.4.0'
+version          '0.4.1'
+issues_url       'https://github.com/cassianoleal/cookbook-zshell/issues'
+source_url       'https://github.com/cassianoleal/cookbook-zshell'
 
 recipe "zshell", "Install zsh"
 
